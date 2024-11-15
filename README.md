@@ -1,4 +1,4 @@
-# 💱💲 Exchange Rate
+# 💲 Exchange Rate
 
 Exchange Rate é um projeto que fiz para uso pessoal. O propósito do projeto é acompanhar os valores atuais das conversões das criptomoedas.
 
