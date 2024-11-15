@@ -16,6 +16,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 List<String> currencies = <String>['BRL', 'USD', 'EUR'];
 List<String> criptos = <String>['BTC', 'USDC', 'ETH', 'EURI'];
 
+@pragma('vm:entry-point')
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     try {
@@ -269,31 +270,38 @@ class CurrencyItemless extends StatelessWidget {
             children: [
               Container(width: 200, child: Image.asset(assetCurrency)),
               Container(height: 50),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      Text(currency),
-                      Text(
-                        "1",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(Currenciescontroller.instance.defaultCurrency.value),
-                      ValueListenableBuilder(
-                          valueListenable: result,
-                          builder: (context, value, child) {
-                            return Text(result.value,
-                                style: TextStyle(fontWeight: FontWeight.bold));
-                          })
-                    ],
-                  )
-                ],
-              )
+              ValueListenableBuilder(
+                  valueListenable: result,
+                  builder: (context, value, child) {
+                    return result.value == "null"
+                        ? Center(
+                            child: Text("No connection"),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(currency),
+                                  Text(
+                                    "1",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(Currenciescontroller
+                                      .instance.defaultCurrency.value),
+                                  Text(result.value,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold))
+                                ],
+                              ),
+                            ],
+                          );
+                  })
             ],
           ),
         ),

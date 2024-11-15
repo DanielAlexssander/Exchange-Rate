@@ -121,11 +121,11 @@ class NotificationController extends ChangeNotifier {
     await flutterLocalNotificationsPlugin.show(
       0,
       'Currency Costing',
-      '1 ${notifyCriptoSetted_1} = ${notifyCurrencySetted_1} $result_1\n1 ${notifyCriptoSetted_2} = ${notifyCurrencySetted_2} $result_2',
+      result_1 == "null" || result_2 == "null"
+          ? "There was a problem with the connection. Please check your connection."
+          : "1 ${notifyCriptoSetted_1} = ${notifyCurrencySetted_1} $result_1\n1 ${notifyCriptoSetted_2} = ${notifyCurrencySetted_2} $result_2",
       platformChannelSpecifics,
     );
-
-    print("object");
   }
 
   setCriptoCurrency([String value = "", String value2 = ""]) {
